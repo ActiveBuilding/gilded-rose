@@ -1,53 +1,132 @@
-# Gilded Rose Refactoring Kata
+# GildedRose Kata - PHP Version
 
-This Kata was originally created by Terry Hughes (http://twitter.com/TerryHughes). It is already on GitHub [here](https://github.com/NotMyself/GildedRose). See also [Bobby Johnson's description of the kata](http://iamnotmyself.com/2011/02/13/refactor-this-the-gilded-rose-kata/).
+See the [top level readme](../README.md) for general information about this exercise. This is the PHP version of the
+ GildedRose Kata. 
 
-I translated the original C# into a few other languages, (with a little help from my friends!), and slightly changed the starting position. This means I've actually done a small amount of refactoring already compared with the original form of the kata, and made it easier to get going with writing tests by giving you one failing unit test to start with. I also added test fixtures for Text-Based approval testing with TextTest (see [the TextTests](https://github.com/emilybache/GildedRose-Refactoring-Kata/tree/master/texttests))
+## Installation
 
-As Bobby Johnson points out in his article ["Why Most Solutions to Gilded Rose Miss The Bigger Picture"](http://iamnotmyself.com/2012/12/07/why-most-solutions-to-gilded-rose-miss-the-bigger-picture), it'll actually give you
-better practice at handling a legacy code situation if you do this Kata in the original C#. However, I think this kata
-is also really useful for practicing writing good tests using different frameworks and approaches, and the small changes I've made help with that. I think it's also interesting to compare what the refactored code and tests look like in different programming languages.
+The kata uses:
 
-I wrote this article ["Writing Good Tests for the Gilded Rose Kata"](http://coding-is-like-cooking.info/2013/03/writing-good-tests-for-the-gilded-rose-kata/) about how you could use this kata in a [coding dojo](https://leanpub.com/codingdojohandbook).
+- PHP 7.2+
+- [Composer](https://getcomposer.org)
 
-## How to use this Kata
+Recommended:
+- [Git](https://git-scm.com/downloads)
 
-The simplest way is to just clone the code and start hacking away improving the design. You'll want to look at the ["Gilded Rose Requirements"](https://github.com/emilybache/GildedRose-Refactoring-Kata/tree/master/GildedRoseRequirements.txt) which explains what the code is for. I strongly advise you that you'll also need some tests if you want to make sure you don't break the code while you refactor.
+Clone the repository
 
-You could write some unit tests yourself, using the requirements to identify suitable test cases. I've provided a failing unit test in a popular test framework as a starting point for most languages.
+```sh
+git clone git@github.com:emilybache/GildedRose-Refactoring-Kata.git
+```
 
-Alternatively, use the "Text-Based" tests provided in this repository. (Read more about that in the next section)
+or
 
-Whichever testing approach you choose, the idea of the exercise is to do some deliberate practice, and improve your skills at designing test cases and refactoring. The idea is not to re-write the code from scratch, but rather to practice designing tests, taking small steps, running the tests often, and incrementally improving the design. 
+```shell script
+git clone https://github.com/emilybache/GildedRose-Refactoring-Kata.git
+```
 
-## Text-Based Approval Testing
+Install all the dependencies using composer
 
-This code comes with comprehensive tests that use this approach. For information about how to run them, see the [texttests README](https://github.com/emilybache/GildedRose-Refactoring-Kata/tree/master/texttests)
+```shell script
+cd ./GildedRose-Refactoring-Kata/php
+composer install
+```
 
-## Get going quickly using Cyber-Dojo
+## Dependencies
 
-I've also set this kata up on [cyber-dojo](https://cyber-dojo.org) for several languages, so you can get going really quickly:
+The project uses composer to install:
 
-To create an *individual* exercise:
-- [C#, NUnit](https://cyber-dojo.org/forker/fork_individual/Fz4xFX?index=3)
-- [C++ (g++), GoogleTest](https://cyber-dojo.org/forker/fork_individual/qPPrZy?index=7)
-- [Java, Cucumber](https://cyber-dojo.org/forker/fork_individual/SvUf30?index=2) - for this one I've also written some step definitions for you
-- [Java, JUnit](https://cyber-dojo.org/forker/fork_individual/aJJEN4?index=2)
-- [Python, unittest](https://cyber-dojo.org/forker/fork_individual/NFgFys?index=2)
-- [Ruby, RSpec](https://cyber-dojo.org/forker/fork_individual/D3xbUV?index=3)
-- [Ruby, testunit](https://cyber-dojo.org/forker/fork_individual/zlElgj?index=9)
+- [PHPUnit](https://phpunit.de/)
+- [ApprovalTests.PHP](https://github.com/approvals/ApprovalTests.php)
+- [PHPStan](https://github.com/phpstan/phpstan)
+- [Easy Coding Standard (ECS)](https://github.com/symplify/easy-coding-standard) 
+- [PHP CodeSniffer](https://github.com/squizlabs/PHP_CodeSniffer/wiki)
 
-To create a *group* exercise:
-- [C#, NUnit](https://cyber-dojo.org/forker/fork_group/Fz4xFX?index=3)
-- [C++ (g++), GoogleTest](https://cyber-dojo.org/forker/fork_group/qPPrZy?index=7)
-- [Java, Cucumber](https://cyber-dojo.org/forker/fork_group/SvUf30?index=2) - for this one I've also written some step definitions for you
-- [Java, JUnit](https://cyber-dojo.org/forker/fork_group/aJJEN4?index=2)
-- [Python, unittest](https://cyber-dojo.org/forker/fork_group/NFgFys?index=2)
-- [Ruby, RSpec](https://cyber-dojo.org/forker/fork_group/D3xbUV?index=3)
-- [Ruby, testunit](https://cyber-dojo.org/forker/fork_group/zlElgj?index=9)
+## Folders
 
-## Better Code Hub
+- `src` - contains the two classes:
+  - `Item.php` - this class should not be changed.
+  - `GildedRose.php` - this class needs to be refactored, and the new feature added.
+- `tests` - contains the tests
+  - `GildedRoseTest.php` - Starter test.
+  - `ApprovalTest.php` - alternative approval test (set to 30 days)
+- `Fixture`
+  - `texttest_fixture.php` used by the approval test, or can be run from the command line
 
-I analysed this repo according to the clean code standards on [Better Code Hub](https://bettercodehub.com) just to get an independent opinion of how bad the code is. Perhaps unsurprisingly, the compliance score is low!
+## Testing
 
-[![BCH compliance](https://bettercodehub.com/edge/badge/emilybache/GildedRose-Refactoring-Kata?branch=master)](https://bettercodehub.com/) 
+PHPUnit is pre-configured to run tests. PHPUnit can be run using a composer script. To run the unit tests, from the
+ root of the PHP project run:
+
+```shell script
+composer test
+```
+
+On Windows a batch file has been created, similar to an alias on Linux/Mac (e.g. `alias pu="composer test"`), the same
+ PHPUnit `composer test` can be run:
+
+```shell script
+pu
+```
+
+### Tests with Coverage Report
+
+To run all test and generate a html coverage report run:
+
+```shell script
+composer test-coverage
+```
+
+The test-coverage report will be created in /builds, it is best viewed by opening **index.html** in your browser.
+
+## Code Standard
+
+Easy Coding Standard (ECS) is used to check for style and code standards, **PSR-12** is used. The current code is not
+ upto standard!
+
+### Check Code
+
+To check code, but not fix errors:
+
+```shell script
+composer check-cs
+``` 
+
+On Windows a batch file has been created, similar to an alias on Linux/Mac (e.g. `alias cc="composer check-cs"`), the
+ same PHPUnit `composer check-cs` can be run:
+
+```shell script
+cc
+```
+
+### Fix Code
+
+There are may code fixes automatically provided by ECS, if advised to run --fix, the following script can be run:
+
+```shell script
+composer fix-cs
+```
+
+On Windows a batch file has been created, similar to an alias on Linux/Mac (e.g. `alias fc="composer fix-cs"`), the same
+ PHPUnit `composer fix-cs` can be run:
+
+```shell script
+fc
+```
+
+## Static Analysis
+
+PHPStan is used to run static analysis checks:
+
+```shell script
+composer phpstan
+```
+
+On Windows a batch file has been created, similar to an alias on Linux/Mac (e.g. `alias ps="composer phpstan"`), the
+ same PHPUnit `composer phpstan` can be run:
+
+```shell script
+ps
+```
+
+**Happy coding**!
